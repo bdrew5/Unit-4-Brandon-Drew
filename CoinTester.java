@@ -11,7 +11,8 @@ public class CoinTester{
     System.out.println("Your Coin = " + yourCoin.toString());
 
     for (int num = 0; num < 10; num++){
-      if (myCoin.equalsTo(HEADS)) {
+      myCoin.flip();
+      if (myCoin.isHeads()) {
         heads++;
       }
     }
