@@ -28,18 +28,17 @@ public class Car{
   tankSize = carTankSize;
 }
   public String getMake(){
-    return make;
-  }
+  return make;
+}
   public String getModel(){
-    return model;
-  }
+  return model;
+}
   public double getMpg(){
-    return mpg;
-  }
+  return mpg;
+}
   public double getTankSize(){
-    return tankSize;
-  }
-
+  return tankSize;
+}
   public String toString(){
     String result = "";
     result += "\nMake: " +make+ "\n";
@@ -56,9 +55,5 @@ public class Car{
     amtFuel = amtFuel + fuel;
     return amtFuel;
   }
-
-  public void drive(){
-  double distance;
-}
 
 }
