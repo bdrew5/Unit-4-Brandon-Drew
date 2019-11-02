@@ -1,15 +1,15 @@
 public class CarTester{
   public static void main(String[] args){
-    Car myCar = newCar("");
+    Car myCar = newCar("Honda, CRV, 20, 50");
 
     System.out.println(myCar);
 
-    myCar.drive(12.2);//drive the car for 12.2 miles
+    myCar.drive(50);//drive the car for 12.2 miles
 
-    System.out.println("Drove 12.2 miles: " +myCar);
+    System.out.println("Drove 50 miles: " +myCar);
 
-    myCar.addFuel(10.5); //adds 10.5 gallons
+    
 
-    System.out.println("added")
+    System.out.println("added");
   }
 }
