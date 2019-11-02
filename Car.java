@@ -17,14 +17,14 @@ public class Car{
   private double mpg; //miles per gallon
   private double amtFuel;
   private double tankSize;
-  private double maxDistance = tankSize * mpg;
-  public double distance;
+
+
 
   public Car(String carMake, String carModel, double carMpg, double carTankSize){
   make = carMake;
   model = carModel;
   mpg = carMpg;
-  amtFuel = (maxDistance - distance) / mpg;
+  amtFuel = carTankSize;
   tankSize = carTankSize;
 }
   public String getMake(){
@@ -42,10 +42,19 @@ public class Car{
 
   public String toString(){
     String result = "";
-    result += "Make: " +make+ "\n";
+    result += "\nMake: " +make+ "\n";
     result += "Model: " +model+ "\n";
     result += "MPG: " +mpg+ "\n";
-    return result += "Fuel: " +amtFuel+ "\n";
+    result += "Fuel: " +amtFuel+ "\n";
+    return result;
+  }
+  public double drive(double distance){
+    amtFuel = (mpg * tankSize - distance) / mpg;
+    return amtFuel;
+  }
+  public double addFuel(double fuel){
+    amtFuel = amtFuel + fuel;
+    return amtFuel;
   }
 
   public void drive(){

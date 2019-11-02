@@ -1,6 +1,6 @@
 public class CarTester{
   public static void main(String[] args){
-    Car myCar = newCar("Honda, CRV, 20, 50");
+    Car myCar = new Car("Ford", "Explorer", 30.0, 25.0);
 
     System.out.println(myCar);
 
@@ -8,8 +8,8 @@ public class CarTester{
 
     System.out.println("Drove 50 miles: " +myCar);
 
-    
 
-    System.out.println("added");
+
+    System.out.println("Added 10.5 gallons: " +myCar);
   }
 }
