@@ -25,6 +25,6 @@ public class CarTester{
     System.out.println("Drove 60 miles: " +car3);
 
     car3.addFuel(2);
-    System.out.println("Added 2 gallons: " +car3);
+    System.out.println("added 2 gallons: " +car3);
   }
 }
