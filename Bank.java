@@ -1,14 +1,28 @@
+/*
+Properties that a bank account should have:
+Account number
+Balance
+Routing number
+Behaviors a bank account should have:
+Withdraw
+Deposit
+Request a new card
+Lock your current card
+Display current balance
+*/
 public class Bank{
 
   private int routingNumber;
   private int accountNumber;
   private double balance;
   private boolean lockCard = false;
+  private double interest;
 
-  public Bank(int rNum, int aNum, double bal){
+  public Bank(int rNum, int aNum, double bal, double intRate){
     routingNumber = rNum;
     accountNumber = aNum;
     balance = bal;
+    interest = intRate;
   }
 
   public String toString(){
@@ -19,39 +33,42 @@ public class Bank{
     result += "Balance: " +balance + "\n";
     result += "Account Number: " +accountNumber+ "\n";
     result += "Routing Number: " +routingNumber+ "\n";
-    return result;
+    result += "Interest Rate : " +interest+ "\n";
   }
+  return result;
   }
-   public String getRoutingNumber(){
+   public int getRoutingNumber(){
      return routingNumber;
    }
-   public String getAccountNumber(){
+   public int getAccountNumber(){
      return accountNumber;
    }
-   public String getbalance(){
+   public double getbalance(){
      return balance;
    }
    public void setBalance(double newBalance){
      balance = newBalance;
-     balanceLeft = balance-withdraw;
-     if (balance = 0) noBalanceLeft = true;
-     else noBalanceLeft = false;
+
+
    }
-     public int withdraw(int withdraw){
+     public double withdraw(double withdraw){
      balance = balance - withdraw;
+     if (balance == 0)
+     System.out.println("You don't have any money in your account");
      return balance;
    }
-   public int deposit(int deposit){
+   public double deposit(double deposit){
      balance = balance + deposit;
      return balance;
    }
    public void lockCard(){
      lockCard = true;
+
      }
 
    public void newCard(){
-     accountNumber = Math.random() * 1000000000000;
-     routingNumber =Math.random() * 1000000000;
+     accountNumber = (int) (Math.random() * 1000000000);
+     routingNumber = (int) (Math.random() * 1000000000);
    }
 
    public void unlockCard(){
