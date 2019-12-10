@@ -1,7 +1,6 @@
 public class Die {
-    private int sideYellow;
-    private int sideRed;
-    private int sideGreen;
+
+    private int side;
     private int dieTypeRandom1;
     private int dieTypeRandom2;
     private int dieType;
@@ -11,9 +10,7 @@ public class Die {
 
 
     public Die(){
-        sideGreen = (int) (Math.random()*6 +1);
-        sideYellow = (int) (Math.random()*6 +1);
-        sideRed = (int) (Math.random()*6 +1);
+        side = (int) (Math.random()*6 +1);
         dieTypeRandom1 = (int) (Math.random()*13 +1);
         dieTypeRandom2 =dieTypeRandom1;
     }
@@ -21,15 +18,15 @@ public class Die {
     public int getSide() {
         if (dieTypeRandom1 <= green){
         dieType = 1;
-        return sideGreen;
+        return side;
       }
         else if (dieTypeRandom1 <= yellow){
         dieType = 2;
-        return sideYellow;
+        return side;
       }
         else{
         dieType = 3;
-        return sideRed;
+        return side;
       }
     }
 
@@ -39,9 +36,7 @@ public class Die {
 
     public void roll(){
       x=x-1;
-      sideGreen = (int) (Math.random()*6 +1);
-      sideYellow = (int) (Math.random()*6 +1);
-      sideRed = (int) (Math.random()*6 +1);
+      side = (int) (Math.random()*6 +1);
       dieTypeRandom2 = (int) (Math.random()*x +1);
       if (dieTypeRandom1 <= green){
         green--;
