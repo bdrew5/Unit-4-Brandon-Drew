@@ -9,8 +9,8 @@ public class DieTester {
         d2.findDieFace();
 
 
-        System.out.println(d1.toString());
-        System.out.println(d2.toString());
+        System.out.println("Die 1: " + d1.toString());
+        System.out.println("Die 2: " + d2.toString());
 
         d1.rollZombie();
         d2.rollZombie();
@@ -18,8 +18,8 @@ public class DieTester {
         d1.findDieFace();
         d2.findDieFace();
 
-        System.out.println(d1.toString());
-        System.out.println(d2.toString());
+        System.out.println("Die 1: " + d1.toString());
+        System.out.println("Die 2: " + d2.toString());
 
 
 

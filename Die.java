@@ -43,7 +43,7 @@ public class Die {
       sideYellow = (int) (Math.random()*6 +1);
       sideRed = (int) (Math.random()*6 +1);
       dieTypeRandom2 = (int) (Math.random()*x +1);
-      if (dieTypeRandom1 >= green){
+      if (dieTypeRandom1 <= green){
         green--;
         yellow--;
       }
