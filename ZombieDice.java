@@ -1,25 +1,17 @@
 public class ZombieDice
 {
   Die d1 = new Die();
-  Die d2 = new Die();
-  Die d3 = new Die();
   private int brains;
   private int shots;
-  private int side1;
-  private int side2;
-  private int side3;
-  private int type1;
-  private int type2;
-  private int type3;
+  private int side;
+  private int color;
+  private int totalBrains;
+  private int counter = 0;
 
 
   public ZombieDice(){
-    side1 = d1.getSide();
-    side2 = d2.getSide();
-    side3 = d3.getSide();
-    type1 = d1.getType();
-    type2 = d2.getType();
-    type3 = d3.getType();
+    side = d1.getSide();
+    color = d1.getType();
 
 
   }
@@ -29,92 +21,49 @@ public class ZombieDice
   public int getShots(){
     return shots;
   }
-  public int getSide1(){
-    return side1;
+  public int getSide(){
+    return side;
   }
-  public int getSide2(){
-    return side2;
-  }
-  public int getSide3(){
-    return side3;
-  }
-  public int getType1(){
-    return type1;
-  }
-  public int getType2(){
-    return type2;
-  }
-  public int getType3(){
-    return type3;
+  public int getColor(){
+    return color;
   }
 
+
   public void findDieFace(){
-    if (type1 ==1){
-      if (side1 <= 3)
+    if (color ==1){
+      counter++;
+      if (side <= 3)
       brains= brains + 1;
-      else if (side1 ==4)
+      else if (side ==4)
       shots= shots + 1;
   }
-    if (type1 ==2){
-      if (side1 <= 2)
+    if (color ==2){
+      counter++;
+      if (side <= 2)
       brains= brains + 1;
-      else if (side1 <=4)
+      else if (side <=4)
       shots= shots + 1;
   }
-    if (type1 ==3){
-      if (side1 == 1)
+    if (color ==3){
+      counter++;
+      if (side == 1)
       brains= brains + 1;
-      else if (side1 <=4)
+      else if (side <=4)
       shots= shots + 1;
   }
-  if (type2 ==1){
-    if (side1 <= 3)
-    brains= brains + 1;
-    else if (side1 ==4)
-    shots= shots + 1;
+    if (shots < 3 && counter % 3 == 0)
+    totalBrains += brains;
 }
-  if (type2 ==2){
-    if (side1 <= 2)
-    brains= brains + 1;
-    else if (side1 <=4)
-    shots= shots + 1;
-}
-  if (type2 ==3){
-    if (side1 == 1)
-    brains= brains + 1;
-    else if (side1 <=4)
-    shots= shots + 1;
-}
-if (type3 ==1){
-  if (side1 <= 3)
-  brains= brains + 1;
-  else if (side1 ==4)
-  shots= shots + 1;
-}
-if (type3 ==2){
-  if (side1 <= 2)
-  brains= brains + 1;
-  else if (side1 <=4)
-  shots= shots + 1;
-}
-if (type3 ==3){
-  if (side1 == 1)
-  brains= brains + 1;
-  else if (side1 <=4)
-  shots= shots + 1;
-}
-  }
 
   public void rollZombie(){
     d1.roll();
-    d2.roll();
-    d3.roll();
-    type1 = d1.getType();
-    type2 = d2.getType();
-    type3 = d3.getType();
-    side1 = d1.getSide();
-    side2 = d2.getSide();
-    side3 = d3.getSide();
+    color = d1.getType();
+    side = d1.getSide();
+  }
+
+  public void nextTurn(){
+    shots=0;
+    brains = 0;
   }
 
   public String toString(){

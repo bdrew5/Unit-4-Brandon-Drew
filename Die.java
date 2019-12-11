@@ -16,22 +16,22 @@ public class Die {
     }
 
     public int getSide() {
-        if (dieTypeRandom1 <= green){
-        dieType = 1;
         return side;
-      }
-        else if (dieTypeRandom1 <= yellow){
-        dieType = 2;
-        return side;
-      }
-        else{
-        dieType = 3;
-        return side;
-      }
     }
 
     public int getType() {
-        return dieType;
+      if (dieTypeRandom1 <= green){
+      dieType = 1;
+      return side;
+    }
+      else if (dieTypeRandom1 <= yellow){
+      dieType = 2;
+      return side;
+    }
+      else{
+      dieType = 3;
+    }
+      return dieType;
     }
 
     public void roll(){
