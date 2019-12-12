@@ -18,6 +18,10 @@ public class ZombieDice
   public int getBrains(){
     return brains;
   }
+  public int getTotalBrains(){
+    return totalBrains;
+  }
+
   public int getShots(){
     return shots;
   }
@@ -51,8 +55,6 @@ public class ZombieDice
       else if (side <=4)
       shots= shots + 1;
   }
-    if (shots < 3 && counter % 3 == 0)
-    totalBrains += brains;
 }
 
   public void rollZombie(){
@@ -61,7 +63,9 @@ public class ZombieDice
     side = d1.getSide();
   }
 
-  public void nextTurn(){
+  public void endTurn(){
+    if (shots < 3 && counter % 3 == 0)
+      totalBrains += brains;
     shots=0;
     brains = 0;
   }
