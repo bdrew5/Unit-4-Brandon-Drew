@@ -7,11 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.shape.*;
-
-
-
 
 public class ZombieDieGUI extends GridPane {
     ZombieDice d1 = new ZombieDice();
@@ -37,44 +33,83 @@ public class ZombieDieGUI extends GridPane {
     private int side1;
     private int side2;
     private int side3;
+    private javafx.scene.image.Image brains;
+    private javafx.scene.image.Image shotguns;
+    private javafx.scene.image.Image feet;
+    private Rectangle bigDie1;
+    private Rectangle bigDie2;
+    private Rectangle bigDie3;
+    private Rectangle smallGreen1;
+    private Rectangle smallGreen2;
+    private Rectangle smallGreen3;
+    private Rectangle smallGreen4;
+    private Rectangle smallGreen5;
+    private Rectangle smallGreen6;
+    private Rectangle smallYellow1;
+    private Rectangle smallYellow2;
+    private Rectangle smallYellow3;
+    private Rectangle smallYellow4;
+    private Rectangle smallRed1;
+    private Rectangle smallRed2;
+    private Rectangle smallRed3;
+    private int green = 6;
+    private int yellow = 4;
+    private int red = 3;
 
 
 
     public ZombieDieGUI() {
-        Font font = new Font(11);
+        brains = new javafx.scene.image.Image("/Image_Brain.jpg", true);
+        feet = new javafx.scene.image.Image("/Foot.jpg", true);
+        shotguns = new javafx.scene.image.Image("/Shotgun.png", true);
 
-        Rectangle bigDie1 = new Rectangle(200,100,40,40);
+        Font font = new Font(11);
+        bigDie1 = new Rectangle(200,100,40,40);
         bigDie1.setFill(Color.WHITE);
-        Rectangle bigDie2 = new Rectangle(250,100,40,40);
+
+        bigDie2 = new Rectangle(250,100,40,40);
         bigDie2.setFill(Color.WHITE);
-        Rectangle bigDie3 = new Rectangle(300,100,40,40);
+
+        bigDie3 = new Rectangle(300,100,40,40);
         bigDie3.setFill(Color.WHITE);
 
-        Rectangle smallGreen1 = new Rectangle(10, 100, 20, 20);
+        smallGreen1 = new Rectangle(10, 100, 20, 20);
         smallGreen1.setFill(Color.GREEN);
-        Rectangle smallGreen2 = new Rectangle(40, 100, 20, 20);
+
+        smallGreen2 = new Rectangle(40, 100, 20, 20);
         smallGreen2.setFill(Color.GREEN);
-        Rectangle smallGreen3 = new Rectangle(70, 100, 20, 20);
+
+        smallGreen3 = new Rectangle(70, 100, 20, 20);
         smallGreen3.setFill(Color.GREEN);
-        Rectangle smallGreen4 = new Rectangle(100, 100, 20, 20);
+
+        smallGreen4 = new Rectangle(100, 100, 20, 20);
         smallGreen4.setFill(Color.GREEN);
-        Rectangle smallGreen5 = new Rectangle(130, 100, 20, 20);
+
+        smallGreen5 = new Rectangle(130, 100, 20, 20);
         smallGreen5.setFill(Color.GREEN);
-        Rectangle smallGreen6 = new Rectangle(150, 100, 20, 20);
+
+        smallGreen6 = new Rectangle(150, 100, 20, 20);
         smallGreen6.setFill(Color.GREEN);
-        Rectangle smallYellow1 = new Rectangle(10, 100, 20, 20);
+
+        smallYellow1 = new Rectangle(10, 100, 20, 20);
         smallYellow1.setFill(Color.YELLOW);
-        Rectangle smallYellow2 = new Rectangle(40, 100, 20, 20);
+
+        smallYellow2 = new Rectangle(40, 100, 20, 20);
         smallYellow2.setFill(Color.YELLOW);
-        Rectangle smallYellow3 = new Rectangle(70, 100, 20, 20);
+
+        smallYellow3 = new Rectangle(70, 100, 20, 20);
         smallYellow3.setFill(Color.YELLOW);
-        Rectangle smallYellow4 = new Rectangle(100, 100, 20, 20);
+
+        smallYellow4 = new Rectangle(100, 100, 20, 20);
         smallYellow4.setFill(Color.YELLOW);
-        Rectangle smallRed1 = new Rectangle(10, 100, 20, 20);
+
+        smallRed1 = new Rectangle(10, 100, 20, 20);
         smallRed1.setFill(Color.RED);
-        Rectangle smallRed2 = new Rectangle(40, 100, 20, 20);
+
+        smallRed2 = new Rectangle(40, 100, 20, 20);
         smallRed2.setFill(Color.RED);
-        Rectangle smallRed3 = new Rectangle(70, 100, 20, 20);
+
+        smallRed3 = new Rectangle(70, 100, 20, 20);
         smallRed3.setFill(Color.RED);
 
         shotsText1 = new Text("Shots: ");
@@ -90,7 +125,7 @@ public class ZombieDieGUI extends GridPane {
 
 
         Button stop = new Button("Stop");
-        stopsetOnAction(this::processStop);
+        stop.setOnAction(this::processStop);
 
         Button roll = new Button("Roll");
         roll.setOnAction(this::processRoll);
@@ -125,16 +160,16 @@ public class ZombieDieGUI extends GridPane {
         setStyle("-fx-background-color: white");
 
         add(player1, 0, 0);
-        add(brainsText1, 1, 0);
-
-        add(shotsText1, 1, 2);
-        add(shots1, 1, 3);
-        add(stop, 2, 1);
+        add(brainsText1, 0, 1);
+        add(brain1, 2, 0);
+        add(shotsText1, 2, 1);
+        add(shots1, 3, 1);
+        add(stop, 1, 2);
         add(roll, 2, 2);
-        add(player2, 3, 0);
-        add(brainsText2, 4, 0);
+        add(player2, 0, 3);
+        add(brainsText2, 0, 4);
 
-        add(shotsText2, 4, 2);
+        add(shotsText2, 2, 4);
     }
 
     private void processRoll(ActionEvent event1){
@@ -199,12 +234,13 @@ public class ZombieDieGUI extends GridPane {
             brain1.setText(b + "");
             shots1.setText(s + "");
             if(type1==3){
-              bigDie1.setFill(Color.RED);
-              smallRed3.remove();
+
+                bigDie1.setFill(Color.RED);
+
               if(side1==1){
 
               }
-                else if(side <=4){
+                else if(side1 <=4){
 
                 }
                 else{
@@ -213,7 +249,7 @@ public class ZombieDieGUI extends GridPane {
               }
               else if (side1==2){
                 bigDie1.setFill(Color.YELLOW);
-                smallYellow4.remove();
+
                 if(side1 <= 2){
 
                 }
@@ -226,8 +262,16 @@ public class ZombieDieGUI extends GridPane {
               }
               else{
                 bigDie1.setFill(Color.GREEN);
-                smallGreen6
-                if
+
+                if(side1<=3){
+
+                }
+                else if(side1<=4){
+
+                }
+                else{
+
+                }
               }
           }
         else{
@@ -253,6 +297,3 @@ public class ZombieDieGUI extends GridPane {
           }
     }
 }
-    public class Image extends Object (
-
-        )
