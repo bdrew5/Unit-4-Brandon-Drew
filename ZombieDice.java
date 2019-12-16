@@ -31,6 +31,10 @@ public class ZombieDice
   public int getColor(){
     return color;
   }
+  public void setColor(int myColor){
+    color = myColor;
+    d1.setDieType(color);
+  }
 
 
   public void findDieFace(){
@@ -38,17 +42,17 @@ public class ZombieDice
       counter++;
       if (side <= 3)
       brains= brains + 1;
-      else if (side ==4)
+      else if (side <=4)
       shots= shots + 1;
   }
-    if (color ==2){
+    else if (color <=2){
       counter++;
       if (side <= 2)
       brains= brains + 1;
       else if (side <=4)
       shots= shots + 1;
   }
-    if (color ==3){
+    else{
       counter++;
       if (side == 1)
       brains= brains + 1;
@@ -63,19 +67,22 @@ public class ZombieDice
     side = d1.getSide();
   }
 
-  public void endTurn(){
-    if (shots < 3 && counter % 3 == 0)
-      totalBrains += brains;
-    shots=0;
-    brains = 0;
+  public void rollOnlySide(){
+    d1.rollSide();
+    side = d1.getSide();
   }
 
-  public String toString(){
-    String result = brains +"\n";
-    result += shots + "";
-  return result;
-
-}
+  public void endTurn(){
+    if (shots < 3 && counter % 3 == 0) {
+      totalBrains += brains;
+    }
+    d1.stop();
+    shots = 0;
+    brains = 0;
+  }
+  public void resetTotal(){
+    totalBrains = 0;
+  }
 
 
 }

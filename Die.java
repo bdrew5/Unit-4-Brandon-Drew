@@ -4,15 +4,15 @@ public class Die {
     private int dieTypeRandom1;
     private int dieTypeRandom2;
     private int dieType;
-    private int x = 13;
-    private int green = 6;
-    private int yellow = 10;
+    private int x;
+    private int green;
+    private int yellow;
 
 
     public Die(){
-        side = (int) (Math.random()*6 +1);
-        dieTypeRandom1 = (int) (Math.random()*13 +1);
-        dieTypeRandom2 =dieTypeRandom1;
+        x=13;
+        green=6;
+        yellow=10;
     }
 
     public int getSide() {
@@ -20,13 +20,13 @@ public class Die {
     }
 
     public int getType() {
-      if (dieTypeRandom1 <= green){
+        if (dieTypeRandom1 <= green){
       dieType = 1;
-      return side;
+      return dieType;
     }
       else if (dieTypeRandom1 <= yellow){
       dieType = 2;
-      return side;
+      return dieType;
     }
       else{
       dieType = 3;
@@ -34,18 +34,55 @@ public class Die {
       return dieType;
     }
 
-    public void roll(){
-      x=x-1;
-      side = (int) (Math.random()*6 +1);
-      dieTypeRandom2 = (int) (Math.random()*x +1);
-      if (dieTypeRandom1 <= green){
-        green--;
-        yellow--;
-      }
-      else if (dieTypeRandom1 >= yellow)
-      yellow--;
-
+    public void setDieType(int myType){
+        dieType = myType;
+        if (dieType == 1){
+            dieTypeRandom1 = green;
+        }
+        else if(dieType <=2){
+            dieTypeRandom1 = yellow;
+        }
+        else{
+            dieTypeRandom1 = x;
+        }
     }
 
+    public void roll(){
+        side = (int) (Math.random()*6 +1);
+        dieTypeRandom1 = (int) (Math.random()*x +1);
+        if (dieTypeRandom1 <= green && side<=4){
+            green--;
+            yellow--;
+            x--;
+      }
+        else if (dieTypeRandom1 <= yellow && side<=4) {
+            yellow--;
+            x--;
+      }
+        else if (dieTypeRandom1 <= x && side<=4){
+            x--;
+      }
+    }
+    public void stop(){
+        x=13;
+        green=6;
+        yellow = 10;
+    }
+
+    public void rollSide(){
+        side = (int) (Math.random()*6 +1);
+        if (dieTypeRandom1 <= green && side<=4){
+            green--;
+            yellow--;
+            x--;
+        }
+        else if (dieTypeRandom1 <= yellow && side<=4) {
+            yellow--;
+            x--;
+        }
+        else if (dieTypeRandom1 <= x && side<=4){
+            x--;
+        }
+    }
 
 }

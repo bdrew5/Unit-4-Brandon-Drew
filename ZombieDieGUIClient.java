@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 
 public class ZombieDieGUIClient extends Application {
     public void start(Stage stage){
-    Scene scene = new Scene(new ZombieDieGUI(), 500, 500);
+    Scene scene = new Scene(new ZombieDieGUI(), 10000, 10000);
 
     stage.setTitle("Zombie Die");
     stage.setScene(scene);
