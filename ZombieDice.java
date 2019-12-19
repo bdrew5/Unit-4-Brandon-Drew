@@ -38,6 +38,7 @@ public class ZombieDice
 
 
   public void findDieFace(){
+    //figures out if a brain or a shotgun was rolled and to the count of the type
     if (color ==1){
       counter++;
       if (side <= 3)
@@ -62,17 +63,20 @@ public class ZombieDice
 }
 
   public void rollZombie(){
+    //gets a new die and rolls
     d1.roll();
     color = d1.getType();
     side = d1.getSide();
   }
 
   public void rollOnlySide(){
+    //rolls the same die again
     d1.rollSide();
     side = d1.getSide();
   }
 
   public void endTurn(){
+    // resets everything
     if (shots < 3 && counter % 3 == 0) {
       totalBrains += brains;
     }

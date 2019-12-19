@@ -50,6 +50,9 @@ public class Die {
         side = (int) (Math.random()*6 +1);
         dieTypeRandom1 = (int) (Math.random()*x +1);
         if (dieTypeRandom1 <= green && side<=4){
+            /*the number of total dice goes down, as well as the color rolled
+            removes a die of that color from the game
+             */
             green--;
             yellow--;
             x--;
@@ -63,12 +66,14 @@ public class Die {
       }
     }
     public void stop(){
+        //resets everything
         x=13;
         green=6;
         yellow = 10;
     }
 
     public void rollSide(){
+        //rolls the same die again, doesn't change the color
         side = (int) (Math.random()*6 +1);
         if (dieTypeRandom1 <= green && side<=4){
             green--;
