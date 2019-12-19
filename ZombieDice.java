@@ -6,13 +6,13 @@ public class ZombieDice
   private int side;
   private int color;
   private int totalBrains;
-  private int counter = 0;
+  private int counter;
 
 
   public ZombieDice(){
     side = d1.getSide();
     color = d1.getType();
-
+    counter = 0;
 
   }
   public int getBrains(){

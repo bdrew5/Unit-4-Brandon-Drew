@@ -2,7 +2,6 @@ public class Die {
 
     private int side;
     private int dieTypeRandom1;
-    private int dieTypeRandom2;
     private int dieType;
     private int x;
     private int green;

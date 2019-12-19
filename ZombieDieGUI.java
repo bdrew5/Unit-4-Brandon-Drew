@@ -15,13 +15,10 @@ import javafx.scene.effect.ImageInput;
 public class ZombieDieGUI extends GridPane {
     ZombieDice d1 = new ZombieDice();
     ZombieDice d2 = new ZombieDice();
-    private int currentPlayer = 1;
+    private int currentPlayer;
     private Text brainsText1;
-    private Text brainsText2;
     private Text brainsTotalText1;
-    private Text brainsTotalText2;
     private Text shotsText1;
-    private Text shotsText2;
     private Text player1;
     private Text player2;
     private Label player;
@@ -59,39 +56,38 @@ public class ZombieDieGUI extends GridPane {
     private Rectangle smallRed1;
     private Rectangle smallRed2;
     private Rectangle smallRed3;
-    private int green = 6;
-    private int yellow = 4;
-    private int red = 3;
-    private boolean isFeet1p1 = false;
-    private boolean isFeet2p1 = false;
-    private boolean isFeet3p1 = false;
-    private boolean isFeet1p2 = false;
-    private boolean isFeet2p2 = false;
-    private boolean isFeet3p2 = false;
+    private int green;
+    private int yellow;
+    private int red;
+    private boolean isFeet1;
+    private boolean isFeet2;
+    private boolean isFeet3;
     private Button stop1;
     private Button roll1;
     private Button stop2;
     private Button roll2;
 
-    ImageInput brainsInput = new ImageInput();
 
 
 
     public ZombieDieGUI() {
+        currentPlayer = 1;
+        green = 6;
+        yellow = 4;
+        red = 3;
+        isFeet1 = false;
+        isFeet2 = false;
+        isFeet3 = false;
+
         brains = new Image("https://ak0.picdn.net/shutterstock/videos/9731240/thumb/1.jpg", true);
-        ImageInput brainsInput = new ImageInput();
-        brainsInput.setSource(brains);
 
         feet = new Image("https://us.123rf.com/450wm/jevgenijavin/jevgenijavin1711/jevgenijavin171100250/89995162-isolated-footprints-of-a-man-leading-upwards-on-a-black-background-diagonally-concept-of-loneliness.jpg?ver=6", true);
-        ImageInput feetInput = new ImageInput();
-        brainsInput.setSource(brains);
 
         shotguns = new Image("https://cdn4.vectorstock.com/i/1000x1000/15/88/white-icon-on-black-background-military-shotgun-vector-16361588.jpg", true);
-        ImageInput shotgunInput = new ImageInput();
-        brainsInput.setSource(shotguns);
 
         Font font1 = new Font(11);
         Font font2 = new Font(20);
+
         bigDie1 = new Rectangle(200,400,100,100);
         bigDie1.setFill(Color.WHITE);
 
@@ -150,12 +146,9 @@ public class ZombieDieGUI extends GridPane {
         smallRed3.setFill(Color.RED);
 
         shotsText1 = new Text("Shots: ");
-        shotsText2 = new Text("Shots: ");
 
         brainsText1 = new Text("Brains This Round:");
-        brainsText2 = new Text("Brains This Round:");
         brainsTotalText1 = new Text("Total Brains:");
-        brainsTotalText2 = new Text("Total Brains:");
 
         player1 = new Text("Player 1");
         player2 = new Text("Player 2");
@@ -227,10 +220,7 @@ public class ZombieDieGUI extends GridPane {
         add(roll1, 4, 1);
         add(stop2, 5, 2);
         add(roll2, 4, 2);
-
-
         add(player,8,3);
-
         add(bigDie1,7,6);
         add(bigSmallDie1,7,6);
         add(bigDie2,8,6);
@@ -256,7 +246,7 @@ public class ZombieDieGUI extends GridPane {
     private void processRoll(ActionEvent event1){
         if (currentPlayer%2 == 1) {
 
-            if (!isFeet1p1) {
+            if (!isFeet1) {
                 d1.rollZombie();
                 d1.findDieFace();
                 type1 = d1.getColor();
@@ -268,7 +258,7 @@ public class ZombieDieGUI extends GridPane {
                 d1.findDieFace();
                 side1 = d1.getSide();
             }
-            if (!isFeet2p1){
+            if (!isFeet2){
                 d1.rollZombie();
                 d1.findDieFace();
                 type2 = d1.getColor();
@@ -280,7 +270,7 @@ public class ZombieDieGUI extends GridPane {
                 d1.findDieFace();
                 side2 = d1.getSide();
             }
-            if(!isFeet3p1){
+            if(!isFeet3){
                 d1.rollZombie();
                 d1.findDieFace();
                 type3 = d1.getColor();
@@ -296,7 +286,7 @@ public class ZombieDieGUI extends GridPane {
             int s= d1.getShots();
 
             if(type1==3){
-                    bigDie1.setFill(Color.RED);
+                bigDie1.setFill(Color.RED);
                 if(red == 3 && side1 <=4){
                     smallRed3.setFill(Color.WHITE);
                     red--;
@@ -311,15 +301,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side1<=1){
                     bigSmallDie1.setFill(new ImagePattern(brains));
-                    isFeet1p1 = false;
+                    isFeet1 = false;
                 }
                 else if(side1 <=4){
                     bigSmallDie1.setFill(new ImagePattern(shotguns));
-                    isFeet1p1 = false;
+                    isFeet1 = false;
                 }
                 else{
                     bigSmallDie1.setFill(new ImagePattern(feet));
-                    isFeet1p1 = true;
+                    isFeet1 = true;
                 }
             }
             else if (type1==2){
@@ -343,15 +333,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side1 <= 2){
                     bigSmallDie1.setFill(new ImagePattern(brains));
-                    isFeet1p1 = false;
+                    isFeet1 = false;
                 }
                 else if(side1 <=4){
                     bigSmallDie1.setFill(new ImagePattern(shotguns));
-                    isFeet1p1 = false;
+                    isFeet1 = false;
                 }
                 else{
                     bigSmallDie1.setFill(new ImagePattern(feet));
-                    isFeet1p1 = true;
+                    isFeet1 = true;
                 }
             }
             else{
@@ -383,15 +373,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side1<=3){
                     bigSmallDie1.setFill(new ImagePattern(brains));
-                    isFeet1p1 = false;
+                    isFeet1 = false;
                 }
                 else if(side1<=4){
                     bigSmallDie1.setFill(new ImagePattern(shotguns));
-                    isFeet1p1 = false;
+                    isFeet1 = false;
                 }
                 else{
                     bigSmallDie1.setFill(new ImagePattern(feet));
-                    isFeet1p1 = true;
+                    isFeet1 = true;
                 }
             }
             if(type2==3){
@@ -410,15 +400,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side2<=1){
                     bigSmallDie2.setFill(new ImagePattern(brains));
-                    isFeet2p1 = false;
+                    isFeet2 = false;
                 }
                 else if(side2 <=4){
                     bigSmallDie2.setFill(new ImagePattern(shotguns));
-                    isFeet2p1 = false;
+                    isFeet2 = false;
                 }
                 else{
                     bigSmallDie2.setFill(new ImagePattern(feet));
-                    isFeet2p1 = true;
+                    isFeet2 = true;
                 }
             }
             else if (type2 == 2){
@@ -442,15 +432,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side2 <= 2){
                     bigSmallDie2.setFill(new ImagePattern(brains));
-                    isFeet2p1 = false;
+                    isFeet2 = false;
                 }
                 else if(side2 <=4){
                     bigSmallDie2.setFill(new ImagePattern(shotguns));
-                    isFeet2p1 = false;
+                    isFeet2 = false;
                 }
                 else{
                     bigSmallDie2.setFill(new ImagePattern(feet));
-                    isFeet2p1 = true;
+                    isFeet2 = true;
                 }
             }
             else{
@@ -481,15 +471,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side2<=3){
                     bigSmallDie2.setFill(new ImagePattern(brains));
-                    isFeet2p1 = false;
+                    isFeet2 = false;
                 }
                 else if(side2<=4){
                     bigSmallDie2.setFill(new ImagePattern(shotguns));
-                    isFeet2p1 = false;
+                    isFeet2 = false;
                 }
                 else{
                     bigSmallDie2.setFill(new ImagePattern(feet));
-                    isFeet2p1 = true;
+                    isFeet2 = true;
                 }
             }
             if(type3==3){
@@ -508,15 +498,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side3<=1){
                     bigSmallDie3.setFill(new ImagePattern(brains));
-                    isFeet3p1 = false;
+                    isFeet3 = false;
                 }
                 else if(side3 <=4){
                     bigSmallDie3.setFill(new ImagePattern(shotguns));
-                    isFeet3p1 = false;
+                    isFeet3 = false;
                 }
                 else{
                     bigSmallDie3.setFill(new ImagePattern(feet));
-                    isFeet3p1 = true;
+                    isFeet3 = true;
                 }
             }
             else if (type3==2){
@@ -540,15 +530,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side3 <= 2){
                     bigSmallDie3.setFill(new ImagePattern(brains));
-                    isFeet3p1 = false;
+                    isFeet3 = false;
                 }
                 else if(side3 <=4){
                     bigSmallDie3.setFill(new ImagePattern(shotguns));
-                    isFeet3p1 = false;
+                    isFeet3 = false;
                 }
                 else{
                     bigSmallDie3.setFill(new ImagePattern(feet));
-                    isFeet3p1 = true;
+                    isFeet3 = true;
                 }
             }
             else{
@@ -579,15 +569,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side3<=3){
                     bigSmallDie3.setFill(new ImagePattern(brains));
-                    isFeet3p1 = false;
+                    isFeet3 = false;
                 }
                 else if(side3<=4){
                     bigSmallDie3.setFill(new ImagePattern(shotguns));
-                    isFeet3p1 = false;
+                    isFeet3 = false;
                 }
                 else{
                     bigSmallDie3.setFill(new ImagePattern(feet));
-                    isFeet3p1 = true;
+                    isFeet3 = true;
                 }
             }
             if (s>=3){
@@ -598,14 +588,14 @@ public class ZombieDieGUI extends GridPane {
                 shots1.setText(" ");
                 brain1.setText(" ");
             }
-              else {
+            else {
                 brain1.setText(b + "");
                 shots1.setText(s + "");
             }
-          }
+        }
         else{
 
-            if (!isFeet1p2) {
+            if (!isFeet1) {
                 d2.rollZombie();
                 d2.findDieFace();
                 type1 = d2.getColor();
@@ -616,7 +606,7 @@ public class ZombieDieGUI extends GridPane {
                 d2.findDieFace();
                 side1 = d2.getSide();
             }
-            if (!isFeet2p2){
+            if (!isFeet2){
                 d2.rollZombie();
                 d2.findDieFace();
                 type2 = d2.getColor();
@@ -628,7 +618,7 @@ public class ZombieDieGUI extends GridPane {
                 d2.findDieFace();
                 side2 = d2.getSide();
             }
-            if(!isFeet3p2){
+            if(!isFeet3){
                 d2.rollZombie();
                 d2.findDieFace();
                 type3 = d2.getColor();
@@ -658,15 +648,16 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side1<=1){
                     bigSmallDie1.setFill(new ImagePattern(brains));
-                    isFeet1p2 = false;
+                    isFeet1 = false;
                 }
+
                 else if(side1 <=4){
                     bigSmallDie1.setFill(new ImagePattern(shotguns));
-                    isFeet1p2 = false;
+                    isFeet1 = false;
                 }
                 else{
                     bigSmallDie1.setFill(new ImagePattern(feet));
-                    isFeet1p2 = true;
+                    isFeet1 = true;
                 }
             }
             else if (type1==2){
@@ -690,15 +681,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side1 <= 2){
                     bigSmallDie1.setFill(new ImagePattern(brains));
-                    isFeet1p2 = false;
+                    isFeet1 = false;
                 }
                 else if(side1 <=4){
                     bigSmallDie1.setFill(new ImagePattern(shotguns));
-                    isFeet1p2 = false;
+                    isFeet1 = false;
                 }
                 else{
                     bigSmallDie1.setFill(new ImagePattern(feet));
-                    isFeet1p2 = true;
+                    isFeet1 = true;
                 }
             }
             else{
@@ -730,15 +721,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side1<=3){
                     bigSmallDie1.setFill(new ImagePattern(brains));
-                    isFeet1p2 = false;
+                    isFeet1 = false;
                 }
                 else if(side1<=4){
                     bigSmallDie1.setFill(new ImagePattern(shotguns));
-                    isFeet1p2 = false;
+                    isFeet1 = false;
                 }
                 else{
                     bigSmallDie1.setFill(new ImagePattern(feet));
-                    isFeet1p2 = true;
+                    isFeet1 = true;
 
                 }
             }
@@ -758,15 +749,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side2<=1){
                     bigSmallDie2.setFill(new ImagePattern(brains));
-                    isFeet2p2 = false;
+                    isFeet2 = false;
                 }
                 else if(side2 <=4){
                     bigSmallDie2.setFill(new ImagePattern(shotguns));
-                    isFeet2p2 = false;
+                    isFeet2 = false;
                 }
                 else{
                     bigSmallDie2.setFill(new ImagePattern(feet));
-                    isFeet2p2 = true;
+                    isFeet2 = true;
                 }
             }
             else if (type2==2){
@@ -790,15 +781,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side2 <= 2){
                     bigSmallDie2.setFill(new ImagePattern(brains));
-                    isFeet2p2 = false;
+                    isFeet2 = false;
                 }
                 else if(side2 <=4){
                     bigSmallDie2.setFill(new ImagePattern(shotguns));
-                    isFeet2p2 = false;
+                    isFeet2 = false;
                 }
                 else{
                     bigSmallDie2.setFill(new ImagePattern(feet));
-                    isFeet2p2 = true;
+                    isFeet2 = true;
                 }
             }
             else{
@@ -829,15 +820,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side2<=3){
                     bigSmallDie2.setFill(new ImagePattern(brains));
-                    isFeet2p2 = false;
+                    isFeet2 = false;
                 }
                 else if(side2<=4){
                     bigSmallDie2.setFill(new ImagePattern(shotguns));
-                    isFeet2p2 = false;
+                    isFeet2 = false;
                 }
                 else{
                     bigSmallDie2.setFill(new ImagePattern(feet));
-                    isFeet2p2 = true;
+                    isFeet2 = true;
                 }
             }
             if(type3==3){
@@ -856,15 +847,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side3<=1){
                     bigSmallDie3.setFill(new ImagePattern(brains));
-                    isFeet3p2 = false;
+                    isFeet3 = false;
                 }
                 else if(side3 <=4){
                     bigSmallDie3.setFill(new ImagePattern(shotguns));
-                    isFeet3p2 = false;
+                    isFeet3 = false;
                 }
                 else{
                     bigSmallDie3.setFill(new ImagePattern(feet));
-                    isFeet3p2 = true;
+                    isFeet3 = true;
                 }
             }
             else if (type3==2){
@@ -888,15 +879,15 @@ public class ZombieDieGUI extends GridPane {
 
                 if(side3 <= 2){
                     bigSmallDie3.setFill(new ImagePattern(brains));
-                    isFeet3p2 = false;
+                    isFeet3 = false;
                 }
                 else if(side3 <=4){
                     bigSmallDie3.setFill(new ImagePattern(shotguns));
-                    isFeet3p2 = false;
+                    isFeet3 = false;
                 }
                 else{
                     bigSmallDie3.setFill(new ImagePattern(feet));
-                    isFeet3p2 = true;
+                    isFeet3 = true;
                 }
             }
             else{
@@ -927,15 +918,15 @@ public class ZombieDieGUI extends GridPane {
                 }
                 if(side3<=3){
                     bigSmallDie3.setFill(new ImagePattern(brains));
-                    isFeet3p2 = false;
+                    isFeet3 = false;
                 }
                 else if(side3<=4){
                     bigSmallDie3.setFill(new ImagePattern(shotguns));
-                    isFeet3p2 = false;
+                    isFeet3 = false;
                 }
                 else{
                     bigSmallDie3.setFill(new ImagePattern(feet));
-                    isFeet3p2 = true;
+                    isFeet3 = true;
                 }
             }
             if (s>=3){
@@ -950,7 +941,7 @@ public class ZombieDieGUI extends GridPane {
                 brain2.setText(b + "");
                 shots2.setText(s + "");
             }
-          }
+        }
     }
 
     private void processStop(ActionEvent event2){
@@ -977,12 +968,9 @@ public class ZombieDieGUI extends GridPane {
         bigSmallDie1.setFill(Color.WHITE);
         bigSmallDie2.setFill(Color.WHITE);
         bigSmallDie3.setFill(Color.WHITE);
-        isFeet1p1 = false;
-        isFeet2p1 = false;
-        isFeet3p1 = false;
-        isFeet1p2 = false;
-        isFeet2p2 = false;
-        isFeet3p2 = false;
+        isFeet1 = false;
+        isFeet2 = false;
+        isFeet3 = false;
         if (currentPlayer%2 == 1){
             player.setText("Player 1's Turn");
             d2.endTurn();
@@ -993,7 +981,7 @@ public class ZombieDieGUI extends GridPane {
             stop1.setVisible(true);
             roll2.setVisible(false);
             roll1.setVisible(true);
-          }
+        }
         else{
             player.setText("Player 2's Turn");
             d1.endTurn();
@@ -1004,19 +992,19 @@ public class ZombieDieGUI extends GridPane {
             stop2.setVisible(true);
             roll1.setVisible(false);
             roll2.setVisible(true);
-          }
-          if (d1.getTotalBrains() >=11 || d2.getTotalBrains() >=11){
-              stop1.setVisible(false);
-              roll1.setVisible(false);
-              stop2.setVisible(false);
-              roll2.setVisible(false);
-              if (currentPlayer%2==0){
-              player.setText("Player 1 Has Won The Game");
-          }
-          else{
-              player.setText("Player 2 Has Won The Game");
-          }
-    }
+        }
+        if (d1.getTotalBrains() >=11 || d2.getTotalBrains() >=11){
+            stop1.setVisible(false);
+            roll1.setVisible(false);
+            stop2.setVisible(false);
+            roll2.setVisible(false);
+            if (currentPlayer%2==0){
+                player.setText("Player 1 Has Won The Game");
+            }
+            else{
+                player.setText("Player 2 Has Won The Game");
+            }
+        }
     }
     private void processReset(ActionEvent event3){
         player.setText("Player 1's Turn");
@@ -1055,5 +1043,10 @@ public class ZombieDieGUI extends GridPane {
         roll2.setVisible(false);
         d1.resetTotal();
         d2.resetTotal();
+        isFeet1 = false;
+        isFeet2 = false;
+        isFeet3 = false;
     }
 }
+
+
